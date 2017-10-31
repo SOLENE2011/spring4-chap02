@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- c네임스페이스와 p네임스페이스를 생성자 방식/프로퍼티 방식으로 설정  -->
+
+	<bean id="user1" class="net.madvirus.spring4.chap02.User" 	c:id="bkchoi" c:password="1234" />
+		<!-- c네임스페이스는 <constructor-arg value="madvirus" /> -->
+		<!-- c:파라미터 이름 -->
+	
+	<bean id="user2" class="net.madvirus.spring4.chap02.User"
+		c:_0="madvirus" c:_1="qwer" />
+		<!-- c_인덱스 또는 c_인덱스-ref 인덱스는 0부터 시작~!-->
+		<!-- 파라미터 순서에 따라 값이나 빈 객체를 전달할 수 있음 --> 
+
+<!-- 83부터 보기 -->
+	<bean id="pwChangeSvc" class="net.madvirus.spring4.chap02.PasswordChangeService"
+			c:userRepository-ref="userRepository" />
+			<!-- c:파라미터이름-ref 속성 사용하여 bean 객체를 생성자 파라미터로 전달  -->
+	
+	<bean id="authFailLogger" class="net.madvirus.spring4.chap02.AuthFailLogger"
+			p:threshold="2" />
+
+	<bean id="authenticationService" 
+			class="net.madvirus.spring4.chap02.AuthenticationService"
+			p:failLogger-ref="authFailLogger"
+			p:userRepository-ref="userRepository" /> 
+	
+	<bean id="userRepository" class="net.madvirus.spring4.chap02.UserRepository">
+		<property name="users">
+			<list>
+				<ref bean="user1" />
+				<ref bean="user2" />
+			</list>
+		</property>
+	</bean>
+</beans>
+

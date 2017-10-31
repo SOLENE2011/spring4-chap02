@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Map / Set / Properties 타입의 콜렉션 설정 -->
+	
+	
+	<!-- Properties 타입의 콜렉션 -->
+	<bean id="sensor1" class="net.madvirus.spring4.chap02.sensor.Sensor">
+		<property name="additionalInfo">
+			<!-- <prop>태그를 이용해서 Properties의 (프로퍼트, 값) 목록 지정 -->
+			<props> <!-- properties -->
+				<prop key="threshold">1500</prop> <!-- 프로퍼티  -->
+				<prop key="retry">3</prop> <!-- 값 -->
+			</props>
+		</property>
+	</bean>
+
+	<!-- Set 타입의 콜렉션 -->
+	<bean id="sensor2" class="net.madvirus.spring4.chap02.sensor.Sensor">
+		<property name="agentCodes">
+			<set> <!-- <set> <list>와 똑같음 이름만 다름. -->
+				<value>200</value>
+				<value>300</value>
+			</set>
+		</property>
+		<property name="additionalInfo">
+			<value>
+				threshold = 3000
+				retry = 5
+			</value>
+		</property>
+	</bean>
+
+	<!-- Map 타입의 콜렉션 -->
+	<bean id="monitor" class="net.madvirus.spring4.chap02.sensor.Monitor">
+		<property name="sensorMap">
+			<map>
+				<entry>
+				<!-- <entry> 태그는 다양한 방법으로 (키,값)을 설정할 수 있다. -->
+					<key>
+						<value>frontDoor</value> <!-- 키값 -->
+					</key>
+					<ref bean="sensor1" /> <!-- 값으로 sensor1 -->
+				</entry>
+				<entry key="backDoor" value-ref="sensor2" />
+			</map>
+		</property>
+		<property name="config">
+			<map>
+				<entry key="interval" value="1000" />
+				<entry key="period">
+					<value>2000</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
+

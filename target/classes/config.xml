@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Spring Container가 생성할 객체에 대한 정보를 지정할 때 사용된다. -->
+	<!-- <bean>태그의 주요속성은 id와 class -->
+	<!-- bean 아이디를 사용하는 이유는 다른 빈에서 참조하기 위해서임 -->
+	<bean id="user1" class="net.madvirus.spring4.chap02.User">
+		<!-- 생성자 방식의 DI  -->
+		<!-- 생성자에 전달할 파라미터 값 설정 -->
+		<constructor-arg value="bkchoi" />
+		<constructor-arg value="1234" />
+	</bean>
+	
+	<bean id="user2" class="net.madvirus.spring4.chap02.User">
+		<constructor-arg value="madvirus" />
+		<constructor-arg value="qwer" />
+	</bean>
+	
+	<bean id="userRepository" class="net.madvirus.spring4.chap02.UserRepository">
+		<!-- 프로퍼티 방식의 DI -->
+		<!-- 프로퍼티 태그를 사용하면 set프로퍼트이름() 형식의 메서드를 이용해서 값 설정 -->
+		<property name="users"> 
+		<!-- setUsers(user1) set메서드 -->
+		<!-- setUsers(user2) set메서드 -->
+			<list> 
+				<ref bean="user1" />
+				<ref bean="user2" />
+				<!-- private Map<String, User> userMap = new HashMap<>(); -->
+				<!-- 전달할 목록이 객체 -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="pwChangeSvc" class="net.madvirus.spring4.chap02.PasswordChangeService">
+		<constructor-arg><ref bean="userRepository"/></constructor-arg>
+	</bean>
+	
+	<bean id="authFailLogger" class="net.madvirus.spring4.chap02.AuthFailLogger">
+		<property name="threshold" value="2" />
+	</bean>
+
+	<bean id="authenticationService" 	class="net.madvirus.spring4.chap02.AuthenticationService">
+		<property name="failLogger" ref="authFailLogger" />
+		<property name="userRepository" ref="userRepository" />
+	</bean>
+</beans>
