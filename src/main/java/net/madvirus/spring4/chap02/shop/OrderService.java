@@ -23,6 +23,7 @@ public class OrderService {
 	@Inject
 	// 의존 자동 설정
 	// 생성자, 메서드, 필드 세 곳에 적용가능 
+	// 반드시 사용할 빈이 존재해야 함
 	public void setErpClientFactory(ErpClientFactory erpClientFactory) {
 		this.erpClientFactory = erpClientFactory;
 	}

@@ -8,8 +8,10 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="net.madvirus.spring4.chap02.shop">
-	</context:component-scan>
+	<context:component-scan base-package="net.madvirus.spring4.chap02.shop" />
+	<!-- base-package 속성에 지정한 패키지 및 그 하위 패키지에 위치한 클래스 중에서 -->
+	<!-- @Component 적용된 클래스를 검색해서 스프링 bean으로 등록한다. -->
+	<!-- 그리고 의존객체 전달을 위해선 @Autowired 와 @Resource 이용해 자동 연결 -->  
 
 	<bean id="orderSearchClientFactory"
 		class="net.madvirus.spring4.chap02.search.SearchClientFactoryBean">
