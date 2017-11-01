@@ -5,6 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- import로 bean 설정!!! -->
 	<import resource="classpath:/config-sensor.xml" />
 	<import resource="classpath:/config.xml" />
 

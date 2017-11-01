@@ -18,16 +18,15 @@
 		<!-- c_인덱스 또는 c_인덱스-ref 인덱스는 0부터 시작~!-->
 		<!-- 파라미터 순서에 따라 값이나 빈 객체를 전달할 수 있음 --> 
 
-<!-- 83부터 보기 -->
 	<bean id="pwChangeSvc" class="net.madvirus.spring4.chap02.PasswordChangeService"
 			c:userRepository-ref="userRepository" />
 			<!-- c:파라미터이름-ref 속성 사용하여 bean 객체를 생성자 파라미터로 전달  -->
 	
 	<bean id="authFailLogger" class="net.madvirus.spring4.chap02.AuthFailLogger"
 			p:threshold="2" />
+			<!-- <p:>프로퍼티 이름 프로퍼티 값 설정 -->
 
-	<bean id="authenticationService" 
-			class="net.madvirus.spring4.chap02.AuthenticationService"
+	<bean id="authenticationService" class="net.madvirus.spring4.chap02.AuthenticationService"
 			p:failLogger-ref="authFailLogger"
 			p:userRepository-ref="userRepository" /> 
 	

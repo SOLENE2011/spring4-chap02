@@ -11,9 +11,9 @@ public class MainByXml {
 
 	public static void main(String[] args) {
 		//스프링 컨테이너 생성하기
-		GenericXmlApplicationContext ctx = 
-				new GenericXmlApplicationContext("classpath:config.xml");
-				// classpath에 위치한 config.xml파일을 스프링 설정으로 사용하겠다. 
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:config.xml");
+				// classpath에 위치한 config.xml파일을 스프링 설정으로 사용하겠다.
+		
 		AuthenticationService authSvc = ctx.getBean("authenticationService", AuthenticationService.class);
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "1111");
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "11111");
@@ -26,6 +26,7 @@ public class MainByXml {
 		PasswordChangeService pwChgSvc = ctx.getBean(PasswordChangeService.class);
 		// 빈의 이름을 지정하지 않고 타입만 전달하면 
 		// 타입에 해당하는 빈을 구해서 return한다.
+		
 		pwChgSvc.changePassword("bkchoi", "1234", "5678");
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "1234");
 		authSvc.authenticate("bkchoi", "5678");
