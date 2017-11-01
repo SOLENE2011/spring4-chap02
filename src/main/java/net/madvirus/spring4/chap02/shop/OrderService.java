@@ -21,6 +21,8 @@ public class OrderService {
 
 
 	@Inject
+	// 의존 자동 설정
+	// 생성자, 메서드, 필드 세 곳에 적용가능 
 	public void setErpClientFactory(ErpClientFactory erpClientFactory) {
 		this.erpClientFactory = erpClientFactory;
 	}
@@ -31,6 +33,7 @@ public class OrderService {
 	// @Autowired에 해당하는 스프링 bean 객체를 찾아서 설정.
 	// @Autowired(required=false) 이면
 	// 일치하는 스프링 빈이 존재하지 않더라도 exception 발생시키지 않는다.
+	// 의존 자동 설정
 	@Autowired
 	
 	// 프로퍼티 설정 
