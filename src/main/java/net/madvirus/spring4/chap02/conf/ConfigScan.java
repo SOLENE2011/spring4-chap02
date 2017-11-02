@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.FilterType;
 
 @Configuration
+// 필터링 대상 클래스 목록을 값으로 
 @ComponentScan(basePackages = "net.madvirus.spring4.chap02.shop",
 	includeFilters = {@Filter(type = FilterType.REGEX, pattern = ".*Service")},
 	excludeFilters = @Filter(type = FilterType.ASPECTJ, pattern = "net..*Dao")

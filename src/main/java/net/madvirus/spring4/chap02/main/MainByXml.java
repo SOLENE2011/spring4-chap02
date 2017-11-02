@@ -15,6 +15,7 @@ public class MainByXml {
 				// classpath에 위치한 config.xml파일을 스프링 설정으로 사용하겠다.
 		
 		AuthenticationService authSvc = ctx.getBean("authenticationService", AuthenticationService.class);
+		// getBean() 이름과, 타입
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "1111");
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "11111");
 		runAuthAndCatchAuthEx(authSvc, "bkchoi", "111111");
